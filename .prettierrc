@@ -1,0 +1,6 @@
+{
+  "singleQuote": true,
+  "xmlSelfClosingSpace": true,
+  "xmlWhitespaceSensitivity": "ignore",
+  "printWidth": 100
+}
