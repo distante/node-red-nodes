@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  node-red:
+    ports:
+        - '1880:1880'
+    volumes:
+        - './node_red_tester_data:/data'
+    container_name: node-red-tester
+    image: nodered/node-red

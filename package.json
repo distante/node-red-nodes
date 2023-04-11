@@ -1,15 +1,16 @@
 {
-  "name": "red-contrib-configurable-countdown-timer",
+  "name": "@saninn/node-red-configurable-countdown-timer-oop",
   "version": "0.0.1",
   "description": "A countdown timer with configurable options",
   "node-red": {
     "nodes": {
-      "configurable-countdown-timer": "configurable-countdown-timer.js",
-      "lower-case": "lower-case.js"
+      "configurable-countdown-timer-oops": "./nodes/configurable-countdown-timer.js"
     }
   },
   "scripts": {
-    "test": "mocha \"test/**/*_spec.js\""
+    "test": "mocha \"test/**/*_spec.js\"",
+    "node-red": "npx node-red -v --settings ./node-red-files/settings.js --userDir ./node-red-files/user-dir",
+    "node-red--old": "npx node-red --settings ./node-red-files/settings.js --userDir ./node-red-files/user-dir"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,9 @@
   },
   "homepage": "https://github.com/distante/node-red-contrib-configurable-countdown-timer#readme",
   "dependencies": {
-    "@types/node-red": "^1.3.0"
+    "@saninn/node-red-configurable-countdown-time": "file:node-red-files/nodes/configurable-countdown-timer",
+    "@types/node-red": "^1.3.0",
+    "configurable-countdown-timer": "file:node-red-files/nodes/configurable-countdown-timer"
   },
   "devDependencies": {
     "mocha": "^10.2.0",

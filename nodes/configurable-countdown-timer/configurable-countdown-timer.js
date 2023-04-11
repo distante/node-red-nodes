@@ -4,6 +4,7 @@
  * Represents a LowerCaseNode that converts incoming messages to lowercase and passes them on.
  * @typedef {import('node-red').Node} NodeRedNode
  * @typedef {import('node-red').NodeMessageInFlow} NodeMessageInFlow
+ * @typedef {import('node-red').NodeMessage} NodeMessage
  *
  */
 
@@ -15,23 +16,28 @@ const initializer = (RED) => {
      */
     nodeRef;
     constructor(config) {
-      // @ts-expect-error NodeRed patches the prototype theoretically
+      // @ts-expect-error NodeRed patches the prototype
       RED.nodes.createNode(this, config);
       // @ts-ignore Node Red Patches this.
       this.nodeRef = this;
 
-      this.nodeRef.on('input', (msg) => {
-        this.handleInput(msg);
+      this.nodeRef.on('input', (msg, send, done) => {
+        this.handleInput(msg,send, done);
       });
     }
 
     /**
      * @param {NodeMessageInFlow} msg
+     * @param {(msg: NodeMessage | Array<NodeMessage | NodeMessage[] | null>) => void} send
+     * @param {(err?: Error) => void} done
      */
-    handleInput(msg) {
+    handleInput(msg, send, done) {
+      this.nodeRef.debug(msg)
       if (typeof msg.payload === 'string') {
         msg.payload = msg.payload.toLowerCase();
-        this.nodeRef.send(msg);
+        this.nodeRef.send({
+          payload: 'saninn',
+        });
       }
     }
   }
