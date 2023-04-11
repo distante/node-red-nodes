@@ -1,7 +1,7 @@
 // @ts-check
 import { exec, execSync, spawn } from 'node:child_process';
 import { watch } from 'node:fs';
-import { Subject, debounceTime } from 'rxjs';
+import { Subject, debounceTime, filter } from 'rxjs';
 
 console.log('WATCHING');
 
@@ -27,18 +27,23 @@ const watcher = watch('nodes', { recursive: true }, (eventType, filename) => {
 
 
 const watchSubscription = watchEvent$$
-  .pipe(debounceTime(200))
+  .pipe(
+    filter(watchEvent => {
+      const isTest = watchEvent.filename.includes('_spec.js');
+      if (isTest) {
+        console.debug('Ignoring test file change');
+        return false
+      }
+      return true;
+    }),
+    debounceTime(200)
+  )
   .subscribe(watchEvent => {
     console.log(watchEvent);
-    const isTest = watchEvent.filename.includes('_spec.js');
 
-    if (isTest) {
-      console.debug('Ignoring test file change');
-    } else {
       console.log('Restarting Docker container')
       execSync(`docker stop ${dockerContainerName}`)
       docker = spawn('docker', ['compose', 'up'], { stdio: 'inherit' });
-    }
   });
 
 process.on('SIGINT', () => {
