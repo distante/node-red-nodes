@@ -1,4 +1,3 @@
-const path = require('path');
 /**
  * This is the default settings file provided by Node-RED.
  *
@@ -21,8 +20,8 @@ const path = require('path');
  *
  **/
 
-const nodesDir = path.join(__dirname, '..', 'nodes');
-console.log('saninn nodesDir', nodesDir);
+const nodesDir = '/nodes';
+
 
 module.exports = {
 
@@ -57,7 +56,7 @@ module.exports = {
      * the user's home directory. To use a different location, the following
      * property can be used
      */
-    userDir: './user-dir',
+    //userDir: '/home/nol/.node-red/',
 
     /** Node-RED scans the `nodes` directory in the userDir to find local node files.
      * The following property can be used to specify an additional directory to scan.

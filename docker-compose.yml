@@ -4,6 +4,7 @@ services:
     ports:
         - '1880:1880'
     volumes:
-        - './node_red_tester_data:/data'
+        - './node-red-files/user-dir:/data'
+        - './nodes:/nodes'
     container_name: node-red-tester
     image: nodered/node-red
