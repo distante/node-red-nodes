@@ -41,13 +41,12 @@ const initializer = (RED) => {
       // @ts-expect-error NodeRed patches the prototype
       RED.nodes.createNode(this, config);
       this.config = config;
-      console.log('config', config);
 
       // @ts-ignore Node Red Patches this.
       this.nodeRef = this;
 
       this.nodeRef.on('input', (msg, send, done) => {
-        console.log('input (config)', this.config);
+
         // @ts-expect-error message is typed here
         this.handleInput(msg,send, done);
       });
@@ -71,26 +70,25 @@ const initializer = (RED) => {
         return;
       }
 
-      if (payload === false) {
-        // TODO:
-        // this.stopCurrentInterval();
-        // return;
+      if (payload === false && this.counterInterval) {
+        this.stopCurrentInterval();
+        this.sendMessage({
+          send,
+          onCountdownCancel: 'onCountdownCancel'
+        })
+        return;
       }
 
       if (this.counterInterval) {
         // Counter running
         if (!this.config.restartOnSecondMessage) {
-          console.log('do not do anything');
           done();
           return;
         }
 
         // Restart
-          console.log('Restart')
           this.stopCurrentInterval();
       }
-
-
 
       this.ticks = parseInt(this.config.countdownFrom);
 
@@ -127,8 +125,9 @@ const initializer = (RED) => {
 
     /**
      * @typedef SendMessageObject
-     * @prop {string} [afterCountdownEnd]
+     * @prop {unknown} [afterCountdownEnd]
      * @prop {number} [currentCountValue]
+     * @prop {unknown} [onCountdownCancel]
      * @prop {(msg: NodeMessage | Array<NodeMessage | NodeMessage[] | null>) => void} send
      *
      * @param {SendMessageObject} config
@@ -140,9 +139,13 @@ const initializer = (RED) => {
 
       const afterCountdownEnd = config.afterCountdownEnd ? {
         payload: config.afterCountdownEnd
+      } : null;
+
+      const onCountdownCancel = config.onCountdownCancel ? {
+        payload: config.onCountdownCancel
       }: null;
 
-      config.send([currentCountValue, afterCountdownEnd])
+      config.send([currentCountValue, afterCountdownEnd, onCountdownCancel])
     }
 
     stopCurrentInterval() {

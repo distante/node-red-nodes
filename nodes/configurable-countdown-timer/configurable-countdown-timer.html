@@ -1,6 +1,6 @@
 <script type="text/javascript">
   RED.nodes.registerType('configurable-countdown-timer', {
-    category: 'function',
+    category: "Saninn's Nodes",
     color: '#a6bbcf',
     defaults: {
       name: { value: 'configurable-countdown-timer' },
@@ -13,11 +13,11 @@
       }
     },
     inputs: 1,
-    outputs: 2,
-    outputLabels: ["Current Count Value", "After Countdown End"],
+    outputs: 3,
+    outputLabels: ["Current Count Value", "After Countdown End", "On Countdown Cancel"],
     icon: 'clock-o',
     label: function () {
-      return this.name || 'configurable-countdown-timer';
+      return this.name || 'Configurable Countdown Timer';
     },
   });
 </script>

@@ -24,8 +24,8 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 170,
-        "y": 200,
+        "x": 150,
+        "y": 180,
         "wires": [
             [
                 "24810721c39bda0c"
@@ -72,7 +72,7 @@
         "z": "3f882c89866aacd8",
         "name": "configurable-countdown-timer",
         "countdownFrom": "3",
-        "restartOnSecondMessage": false,
+        "restartOnSecondMessage": true,
         "x": 370,
         "y": 200,
         "wires": [
@@ -81,7 +81,52 @@
             ],
             [
                 "79cba081cabbe7cf"
+            ],
+            [
+                "4ee046c4fbe37ccd"
             ]
         ]
+    },
+    {
+        "id": "c3eb4b1893654c6d",
+        "type": "inject",
+        "z": "3f882c89866aacd8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 150,
+        "y": 240,
+        "wires": [
+            [
+                "24810721c39bda0c"
+            ]
+        ]
+    },
+    {
+        "id": "4ee046c4fbe37ccd",
+        "type": "debug",
+        "z": "3f882c89866aacd8",
+        "name": "Cancel",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 760,
+        "y": 260,
+        "wires": []
     }
 ]
