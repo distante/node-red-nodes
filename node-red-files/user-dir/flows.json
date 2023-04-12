@@ -28,20 +28,7 @@
         "y": 200,
         "wires": [
             [
-                "5a9ce9b10b8004a6"
-            ]
-        ]
-    },
-    {
-        "id": "5a9ce9b10b8004a6",
-        "type": "configurable-countdown-timer",
-        "z": "3f882c89866aacd8",
-        "name": "configurable-countdown-timer",
-        "x": 490,
-        "y": 200,
-        "wires": [
-            [
-                "e4f9c456255b4861"
+                "24810721c39bda0c"
             ]
         ]
     },
@@ -49,16 +36,52 @@
         "id": "e4f9c456255b4861",
         "type": "debug",
         "z": "3f882c89866aacd8",
-        "name": "debug 1",
+        "name": "After End",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 740,
-        "y": 200,
+        "x": 760,
+        "y": 180,
         "wires": []
+    },
+    {
+        "id": "79cba081cabbe7cf",
+        "type": "debug",
+        "z": "3f882c89866aacd8",
+        "name": "Count Value",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "24810721c39bda0c",
+        "type": "configurable-countdown-timer",
+        "z": "3f882c89866aacd8",
+        "name": "configurable-countdown-timer",
+        "countdownFrom": "3",
+        "restartOnSecondMessage": false,
+        "x": 370,
+        "y": 200,
+        "wires": [
+            [
+                "e4f9c456255b4861"
+            ],
+            [
+                "79cba081cabbe7cf"
+            ]
+        ]
     }
 ]

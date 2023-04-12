@@ -1,8 +1,8 @@
-import { NodeMessage } from '@node-red/registry';
+import { NodeMessageInFlow } from '@node-red/registry';
 
 
-export interface CCT_MessageInput extends NodeMessage {
-  payload?: boolean;
+export interface CCT_MessageInput extends NodeMessageInFlow {
+  payload?: boolean | undefined;
   /**
    * If defined, the countdown will start again
    */
@@ -11,5 +11,10 @@ export interface CCT_MessageInput extends NodeMessage {
 
 
 export interface ICountdownTimerNode {
-  countdownValue: number;
+  config: CountdownConfig;
+}
+
+export interface CountdownConfig {
+  countdownFrom: string;
+  restartOnSecondMessage: boolean;
 }
