@@ -2,11 +2,11 @@ import { NodeMessage } from '@node-red/registry';
 
 
 export interface CCT_MessageInput extends NodeMessage {
-  payload?: boolean | unknown;
+  payload?: boolean;
   /**
    * If defined, the countdown will start again
    */
-  restart?: boolean | unknown;
+  restart?: boolean;
 }
 
 

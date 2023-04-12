@@ -55,31 +55,45 @@ describe('configurable-countdown-timer Node', function () {
     });
   });
 
-  it('should make payload lower case', function (done) {
+  it('should emit each countdown number on the second output', function (done) {
   const cctNodeId = 'cctNodeId';
-  const endHelperNodeId = 'endHelperNodeId';
+  const countReceiverNodeId = 'countReceiverNodeId';
+    const afterCountEndTriggerId = 'afterCountEndTriggerId';
+
+    /** @type {import('../types.d.ts').ICountdownTimerNode} */
+    const cctProperties = {
+      countdownValue : 3
+    }
 
     const flow = [
-      { id: cctNodeId,type: cctType, name: cctType,wires:[[endHelperNodeId]] },
-      { id: endHelperNodeId, type: 'helper' }
+      {
+        id: cctNodeId, type: cctType, name: cctType
+        , wires: [[afterCountEndTriggerId], [countReceiverNodeId]],
+        ...cctProperties
+      },
+      { id: countReceiverNodeId, type: 'helper' },
+      { id: afterCountEndTriggerId, type: 'helper' },
+      { id: countReceiverNodeId, type: 'helper' },
     ];
 
     helper.load(lowerNode, flow, function () {
-      const endHelperNode = helper.getNode(endHelperNodeId);
+      const countReceiverNode = helper.getNode(countReceiverNodeId);
+      const afterCountEndTrigger = helper.getNode(afterCountEndTriggerId);
+
       const cctNode = helper.getNode(cctNodeId);
 
-      endHelperNode.on('input', function (msg) {
-        try {
-          msg.should.have.property('payload', 'uppercase');
+
+      countReceiverNode.on('input', function (msg) {
+        let counter = cctProperties.countdownValue;
+        counter--;
+        if (counter === 0) {
           done();
-        } catch(err) {
-          done(err);
         }
       });
 
-      const message = getMessage({ payload: 'UpperCase' })
+      const messageInput = getMessage({ payload: true })
 
-      cctNode.receive(message);
+      cctNode.receive(messageInput);
     });
   });
 });
