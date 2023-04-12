@@ -15,10 +15,6 @@
         "props": [
             {
                 "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
             }
         ],
         "repeat": "",
@@ -26,12 +22,43 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 380,
-        "y": 100,
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 170,
+        "y": 200,
         "wires": [
-            []
+            [
+                "5a9ce9b10b8004a6"
+            ]
         ]
+    },
+    {
+        "id": "5a9ce9b10b8004a6",
+        "type": "configurable-countdown-timer",
+        "z": "3f882c89866aacd8",
+        "name": "configurable-countdown-timer",
+        "x": 490,
+        "y": 200,
+        "wires": [
+            [
+                "e4f9c456255b4861"
+            ]
+        ]
+    },
+    {
+        "id": "e4f9c456255b4861",
+        "type": "debug",
+        "z": "3f882c89866aacd8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 200,
+        "wires": []
     }
 ]

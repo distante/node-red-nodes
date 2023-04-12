@@ -2,11 +2,15 @@
 
 /**
  * Represents a LowerCaseNode that converts incoming messages to lowercase and passes them on.
+ * @typedef {import('./types.d.ts').CCT_MessageInput} MessageInput
  * @typedef {import('node-red').Node} NodeRedNode
  * @typedef {import('node-red').NodeMessageInFlow} NodeMessageInFlow
  * @typedef {import('node-red').NodeMessage} NodeMessage
  *
  */
+
+
+
 
 /**@type {import('node-red').NodeInitializer} */
 const initializer = (RED) => {
@@ -15,6 +19,9 @@ const initializer = (RED) => {
      * @type NodeRedNode
      */
     nodeRef;
+
+
+
     constructor(config) {
       // @ts-expect-error NodeRed patches the prototype
       RED.nodes.createNode(this, config);
@@ -24,14 +31,22 @@ const initializer = (RED) => {
       this.nodeRef.on('input', (msg, send, done) => {
         this.handleInput(msg,send, done);
       });
+
+      // this.nodeRef.on('close', (done) => {
+      //   // clean up
+      // })
     }
 
     /**
-     * @param {NodeMessageInFlow} msg
+     * @param {MessageInput} msg
      * @param {(msg: NodeMessage | Array<NodeMessage | NodeMessage[] | null>) => void} send
      * @param {(err?: Error) => void} done
      */
     handleInput(msg, send, done) {
+
+      // if (!msg) {
+      //   return;
+      // }
       this.nodeRef.debug(msg)
       if (typeof msg.payload === 'string') {
         msg.payload = msg.payload.toLowerCase();
