@@ -64,20 +64,27 @@ const initializer = (RED) => {
      * @param {(err?: Error) => void} done
      */
     handleInput(msg, send, done) {
+
       const { payload } = msg
+
       if (typeof payload !== 'boolean') {
         done();
         return;
       }
 
-      if (payload === false && this.counterInterval) {
-        this.stopCurrentInterval();
-        this.sendMessage({
-          send,
-          onCountdownCancel: 'onCountdownCancel'
-        })
+      if (payload === false) {
+        if (this.counterInterval) {
+          this.stopCurrentInterval();
+          this.sendMessage({
+            send,
+            onCountdownCancel: 'CountdownCancel'
+          })
+        }
+
         return;
       }
+
+
 
       if (this.counterInterval) {
         // Counter running
@@ -105,7 +112,7 @@ const initializer = (RED) => {
           this.sendMessage({
             send,
             currentCountValue: 0,
-            afterCountdownEnd: 'Countdown ended'
+            afterCountdownEnd: 'CountdownEnded'
           })
 
           return;

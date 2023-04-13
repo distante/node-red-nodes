@@ -2,6 +2,7 @@ node_modules
 .npm
 node-red-files/user-dir/.config.users.json
 node-red-files/user-dir/.config.users.json.backup
+node-red-files/user-dir/.config.nodes.json.backup
 node-red-files/user-dir/.flows.json.backup
 *.tgz
 .DS_Store

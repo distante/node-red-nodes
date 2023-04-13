@@ -28,7 +28,7 @@
         "y": 180,
         "wires": [
             [
-                "24810721c39bda0c"
+                "6e3baed37ad5597e"
             ]
         ]
     },
@@ -67,27 +67,6 @@
         "wires": []
     },
     {
-        "id": "24810721c39bda0c",
-        "type": "configurable-countdown-timer",
-        "z": "3f882c89866aacd8",
-        "name": "configurable-countdown-timer",
-        "countdownFrom": "3",
-        "restartOnSecondMessage": true,
-        "x": 370,
-        "y": 200,
-        "wires": [
-            [
-                "e4f9c456255b4861"
-            ],
-            [
-                "79cba081cabbe7cf"
-            ],
-            [
-                "4ee046c4fbe37ccd"
-            ]
-        ]
-    },
-    {
         "id": "c3eb4b1893654c6d",
         "type": "inject",
         "z": "3f882c89866aacd8",
@@ -108,7 +87,7 @@
         "y": 240,
         "wires": [
             [
-                "24810721c39bda0c"
+                "6e3baed37ad5597e"
             ]
         ]
     },
@@ -128,5 +107,26 @@
         "x": 760,
         "y": 260,
         "wires": []
+    },
+    {
+        "id": "6e3baed37ad5597e",
+        "type": "configurable-countdown-timer",
+        "z": "3f882c89866aacd8",
+        "name": "configurable-countdown-timer",
+        "countdownFrom": "3",
+        "restartOnSecondMessage": false,
+        "x": 410,
+        "y": 200,
+        "wires": [
+            [
+                "e4f9c456255b4861"
+            ],
+            [
+                "79cba081cabbe7cf"
+            ],
+            [
+                "4ee046c4fbe37ccd"
+            ]
+        ]
     }
 ]

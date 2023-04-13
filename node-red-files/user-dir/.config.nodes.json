@@ -426,21 +426,5 @@
                 "file": "/nodes/configurable-countdown-timer/configurable-countdown-timer.js"
             }
         }
-    },
-    "@saninn/node-red-configurable-countdown-timer": {
-        "name": "@saninn/node-red-configurable-countdown-timer",
-        "version": "0.0.1",
-        "local": false,
-        "user": false,
-        "nodes": {
-            "configurable-countdown-timer": {
-                "name": "configurable-countdown-timer",
-                "types": [],
-                "local": false,
-                "user": false,
-                "module": "@saninn/node-red-configurable-countdown-timer",
-                "file": "/Users/saninn/dev/saninn/node-red/node-red-contrib-configurable-timer/nodes/configurable-countdown-timer/configurable-countdown-timer.js"
-            }
-        }
     }
 }
