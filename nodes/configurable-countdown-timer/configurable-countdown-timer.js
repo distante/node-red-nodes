@@ -36,9 +36,17 @@ const initializer = (RED) => {
       // @ts-expect-error NodeRed patches the prototype
       RED.nodes.createNode(this, config);
       this.config = config;
-
       // @ts-ignore Node Red Patches this.
       this.nodeRef = this;
+      this.#initialize();
+    }
+
+    #initialize() {
+      this.nodeRef.status({
+        fill: 'grey',
+        shape: 'dot',
+        text: 'Ready',
+      });
 
       this.nodeRef.on('input', (msg, send, done) => {
         // @ts-expect-error message is typed here
@@ -147,6 +155,28 @@ const initializer = (RED) => {
           }
         : null;
 
+      const currentDateTime = this.#getCurrentTimeAndDate();
+
+      if (onCountdownCancel) {
+        this.nodeRef.status({
+          fill: 'red',
+          shape: 'dot',
+          text: `${this.config.countdownFrom}s countdown cancelled at ${currentDateTime}`,
+        });
+      } else if (afterCountdownEnd) {
+        this.nodeRef.status({
+          fill: 'green',
+          shape: 'dot',
+          text: `${this.config.countdownFrom}s countdown ended at ${currentDateTime}`,
+        });
+      } else if (currentCountValue) {
+        this.nodeRef.status({
+          fill: 'yellow',
+          shape: 'dot',
+          text: `${currentCountValue.payload}s left`,
+        });
+      }
+
       config.send([currentCountValue, afterCountdownEnd, onCountdownCancel]);
     }
 
@@ -154,6 +184,30 @@ const initializer = (RED) => {
       clearInterval(this.counterInterval);
       this.counterInterval = undefined;
       this.ticks = -1;
+    }
+
+    #getCurrentTimeAndDate() {
+      // Get the current date and time
+      const now = new Date();
+
+      // Format the time and date separately, using the user's local time zone
+      const formattedTime = now.toLocaleTimeString(undefined, {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      });
+
+      const formattedDate = now.toLocaleDateString(undefined, {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+      });
+
+      // Combine the formatted time and date in the desired order
+      const formattedDateTime = `${formattedDate} - ${formattedTime}`;
+
+      return formattedDateTime;
     }
   }
 
