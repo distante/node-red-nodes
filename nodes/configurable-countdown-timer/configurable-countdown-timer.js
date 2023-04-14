@@ -11,9 +11,6 @@
  *
  */
 
-
-
-
 /**@type {import('node-red').NodeInitializer} */
 const initializer = (RED) => {
   /** @implements {ICountdownTimerNode} */
@@ -35,8 +32,6 @@ const initializer = (RED) => {
 
     ticks = -1;
 
-
-
     constructor(config) {
       // @ts-expect-error NodeRed patches the prototype
       RED.nodes.createNode(this, config);
@@ -46,16 +41,15 @@ const initializer = (RED) => {
       this.nodeRef = this;
 
       this.nodeRef.on('input', (msg, send, done) => {
-
         // @ts-expect-error message is typed here
-        this.handleInput(msg,send, done);
+        this.handleInput(msg, send, done);
       });
 
       this.nodeRef.on('close', (done) => {
         this.nodeRef.debug('Cleaning up nodes');
-        clearInterval(this.counterInterval)
-        done()
-      })
+        clearInterval(this.counterInterval);
+        done();
+      });
     }
 
     /**
@@ -64,8 +58,7 @@ const initializer = (RED) => {
      * @param {(err?: Error) => void} done
      */
     handleInput(msg, send, done) {
-
-      const { payload } = msg
+      const { payload } = msg;
 
       if (typeof payload !== 'boolean') {
         done();
@@ -77,14 +70,12 @@ const initializer = (RED) => {
           this.stopCurrentInterval();
           this.sendMessage({
             send,
-            onCountdownCancel: 'CountdownCancel'
-          })
+            onCountdownCancel: 'CountdownCancel',
+          });
         }
 
         return;
       }
-
-
 
       if (this.counterInterval) {
         // Counter running
@@ -94,14 +85,14 @@ const initializer = (RED) => {
         }
 
         // Restart
-          this.stopCurrentInterval();
+        this.stopCurrentInterval();
       }
 
       this.ticks = parseInt(this.config.countdownFrom);
 
       this.sendMessage({
         send,
-        currentCountValue: this.ticks
+        currentCountValue: this.ticks,
       });
 
       this.counterInterval = setInterval(() => {
@@ -112,23 +103,20 @@ const initializer = (RED) => {
           this.sendMessage({
             send,
             currentCountValue: 0,
-            afterCountdownEnd: 'CountdownEnded'
-          })
+            afterCountdownEnd: 'CountdownEnded',
+          });
 
           return;
         }
 
         this.sendMessage({
           send,
-          currentCountValue: this.ticks
-        })
+          currentCountValue: this.ticks,
+        });
+      }, 1000);
 
-      },  1000)
-
-      done()
+      done();
     }
-
-
 
     /**
      * @typedef SendMessageObject
@@ -140,19 +128,26 @@ const initializer = (RED) => {
      * @param {SendMessageObject} config
      */
     sendMessage(config) {
-      const currentCountValue = typeof config.currentCountValue === 'number' ? {
-        payload: config.currentCountValue
-      } : null;
+      const currentCountValue =
+        typeof config.currentCountValue === 'number'
+          ? {
+              payload: config.currentCountValue,
+            }
+          : null;
 
-      const afterCountdownEnd = config.afterCountdownEnd ? {
-        payload: config.afterCountdownEnd
-      } : null;
+      const afterCountdownEnd = config.afterCountdownEnd
+        ? {
+            payload: config.afterCountdownEnd,
+          }
+        : null;
 
-      const onCountdownCancel = config.onCountdownCancel ? {
-        payload: config.onCountdownCancel
-      }: null;
+      const onCountdownCancel = config.onCountdownCancel
+        ? {
+            payload: config.onCountdownCancel,
+          }
+        : null;
 
-      config.send([currentCountValue, afterCountdownEnd, onCountdownCancel])
+      config.send([currentCountValue, afterCountdownEnd, onCountdownCancel]);
     }
 
     stopCurrentInterval() {
@@ -161,8 +156,6 @@ const initializer = (RED) => {
       this.ticks = -1;
     }
   }
-
-
 
   // @ts-ignore NodeRed patches the prototype
   RED.nodes.registerType('configurable-countdown-timer', CountdownTimerNode);

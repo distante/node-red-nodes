@@ -50,7 +50,7 @@ describe('configurable-countdown-timer Node', function () {
   beforeEach(function (done) {
     if (clock) {
       clock.reset();
-    clock.restore();
+      clock.restore();
     }
 
     clock = sinon.useFakeTimers({ toFake: ['setInterval', 'clearInterval'] });
@@ -152,13 +152,12 @@ describe('configurable-countdown-timer Node', function () {
         id: cctNodeId,
         type: cctType,
         name: cctType,
-                wires: [[countReceiverNodeId], [afterCountEndTriggerId], [onCountdownCancelId]],
+        wires: [[countReceiverNodeId], [afterCountEndTriggerId], [onCountdownCancelId]],
         ...cctConfig,
       },
       { id: countReceiverNodeId, type: 'helper' },
       { id: afterCountEndTriggerId, type: 'helper' },
     ];
-
 
     helper.load(CountdownTimerNode, flow, () => {
       const countReceiverNode = helper.getNode(countReceiverNodeId);

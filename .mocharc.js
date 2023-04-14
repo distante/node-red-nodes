@@ -10,5 +10,5 @@ module.exports = {
 
   watch: false,
   // 'watch-files': ['test/**/*.js'],
-  'watch-ignore': ['node_modules','node-red-files']
+  'watch-ignore': ['node_modules', 'node-red-files'],
 };

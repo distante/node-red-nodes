@@ -1,6 +1,19 @@
 {
   "singleQuote": true,
-  "xmlSelfClosingSpace": true,
-  "xmlWhitespaceSensitivity": "ignore",
-  "printWidth": 100
+  "printWidth": 100,
+  "htmlWhitespaceSensitivity": "ignore",
+  "overrides": [
+    {
+      "files": ["*.json"],
+      "options": {
+        "printWidth": 60
+      }
+    },
+    {
+      "files": ["*.yaml", "*.yml"],
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
 }
