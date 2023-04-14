@@ -14,7 +14,8 @@
     "release": "release-it"
   },
   "files": [
-    "nodes"
+    "nodes",
+    "README.md"
   ],
   "repository": {
     "type": "git",
