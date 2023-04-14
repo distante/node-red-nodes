@@ -1,5 +1,12 @@
 {
+  "git": {
+    "push": true,
+    "tag": true
+  },
   "github": {
     "release": true
+  },
+  "npm": {
+    "publish": true
   }
 }
