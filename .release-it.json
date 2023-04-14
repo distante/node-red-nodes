@@ -1,5 +1,6 @@
 {
   "git": {
+    "commit": true,
     "push": true,
     "tag": true
   },
