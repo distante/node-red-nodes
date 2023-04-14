@@ -1,0 +1,3 @@
+node_modules
+node-red-files
+!node-red-files/user-dir/settings.js
