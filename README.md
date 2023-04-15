@@ -8,7 +8,7 @@ A simple node starts a countdown when a true payload is send. Can be cancelled a
 
 ## Rx Debounce Time
 
-Ignores emits until certain amount of time happen. Then emits the last value.
+Ignores constant emits during a given window of time. Then emits the last value.
 
 # Start Developing with
 
