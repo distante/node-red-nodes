@@ -1,13 +1,13 @@
 // @ts-check
 /**
  * Represents a LowerCaseNode that converts incoming messages to lowercase and passes them on.
- * @typedef {import('../types.d.ts').CCT_MessageInput} MessageInput
- * @typedef {import('../types.d.ts').CountdownConfig} CountdownConfig
+ * @typedef {import('./types.d.ts').CCT_MessageInput} MessageInput
+ * @typedef {import('./types.d.ts').CountdownConfig} CountdownConfig
  *
  */
 const assert = require('assert');
 const helper = require('node-red-node-test-helper');
-const CountdownTimerNode = require('../configurable-countdown-timer.js');
+const CountdownTimerNode = require('./configurable-countdown-timer.js');
 const sinon = require('sinon');
 
 // @ts-ignore
@@ -83,10 +83,9 @@ describe('configurable-countdown-timer Node', function () {
     const countReceiverNodeId = 'countReceiverNodeId';
     const afterCountEndTriggerId = 'afterCountEndTriggerId';
 
-    /** @type {import('../types.d.ts').CountdownConfig} */
-    const cctConfig = {
+    const cctConfig = getConfig({
       countdownFrom: '3',
-    };
+    });
 
     const flow = [
       {
@@ -142,7 +141,6 @@ describe('configurable-countdown-timer Node', function () {
     const afterCountEndTriggerId = 'afterCountEndTriggerId';
     const onCountdownCancelId = 'onCountdownCancelId';
 
-    /** @type {import('../types.d.ts').CountdownConfig} */
     const cctConfig = getConfig({
       countdownFrom: '3',
     });
@@ -196,7 +194,6 @@ describe('configurable-countdown-timer Node', function () {
     const countReceiverNodeId = 'countReceiverNodeId';
     const afterCountEndTriggerId = 'afterCountEndTriggerId';
 
-    /** @type {import('../types.d.ts').CountdownConfig} */
     const cctConfig = getConfig({
       countdownFrom: '3',
       restartOnSecondMessage: false,
@@ -260,7 +257,7 @@ describe('configurable-countdown-timer Node', function () {
     const afterCountEndTriggerId = 'afterCountEndTriggerId';
     const onCountdownCancelId = 'onCountdownCancelId';
 
-    /** @type {import('../types.d.ts').CountdownConfig} */
+    /** @type {CountdownConfig} */
     const cctConfig = getConfig({
       countdownFrom: '3',
       restartOnSecondMessage: true,
@@ -325,7 +322,6 @@ describe('configurable-countdown-timer Node', function () {
     const afterCountEndTriggerId = 'afterCountEndTriggerId';
     const onCountdownCancelId = 'onCountdownCancelId';
 
-    /** @type {import('../types.d.ts').CountdownConfig} */
     const cctConfig = getConfig({
       countdownFrom: '3',
       restartOnSecondMessage: true,

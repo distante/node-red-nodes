@@ -1,9 +1,9 @@
 <script type="text/javascript">
   RED.nodes.registerType('configurable-countdown-timer', {
-    category: "Saninn's Nodes",
+    category: 'Saninn Nodes',
     color: '#a6bbcf',
     defaults: {
-      name: { value: 'configurable-countdown-timer' },
+      name: {},
       countdownFrom: {
         required: true,
         validate: RED.validators.number(),
@@ -17,7 +17,15 @@
     outputLabels: ['Current Count Value', 'After Countdown End', 'On Countdown Cancel'],
     icon: 'clock-o',
     label: function () {
-      return this.name || 'Configurable Countdown Timer';
+      if (!this.name && !this.countdownFrom) {
+        return 'configurable-countdown-timer';
+      }
+
+      if (this.name) {
+        return this.name;
+      }
+
+      return `Countdown from ${this.countdownFrom}s`;
     },
   });
 </script>
@@ -50,7 +58,7 @@
 
 <script type="text/html" data-help-name="configurable-countdown-timer">
   <p>
-    A simple node that converts the message payloads into all configurable-countdown-timer
-    characters
+    A simple node starts a countdown when a true payload is send. Can be cancelled and there are
+    outputs for each event.
   </p>
 </script>
