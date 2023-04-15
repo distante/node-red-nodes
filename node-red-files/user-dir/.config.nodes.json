@@ -424,6 +424,17 @@
                 "user": false,
                 "module": "node-red",
                 "file": "/nodes/configurable-countdown-timer/configurable-countdown-timer.js"
+            },
+            "rx-debounce-time": {
+                "name": "rx-debounce-time",
+                "types": [
+                    "rx-debounce-time"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red",
+                "file": "/nodes/rx-debounce-time/rx-debounce-time.js"
             }
         }
     }

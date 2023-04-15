@@ -413,6 +413,28 @@
                 "user": false,
                 "module": "node-red",
                 "file": "/usr/src/node-red/node_modules/@node-red/nodes/core/storage/23-watch.js"
+            },
+            "configurable-countdown-timer": {
+                "name": "configurable-countdown-timer",
+                "types": [
+                    "configurable-countdown-timer"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red",
+                "file": "/nodes/configurable-countdown-timer/configurable-countdown-timer.js"
+            },
+            "rx-debounce-time": {
+                "name": "rx-debounce-time",
+                "types": [
+                    "configurable-countdown-timer"
+                ],
+                "enabled": true,
+                "local": false,
+                "user": false,
+                "module": "node-red",
+                "file": "/nodes/rx-debounce-time/rx-debounce-time.js"
             }
         }
     }

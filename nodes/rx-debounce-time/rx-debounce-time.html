@@ -1,0 +1,50 @@
+<script type="text/javascript">
+  RED.nodes.registerType('rx-debounce-time', {
+    category: 'Saninn Nodes',
+    color: '#a6bbcf',
+    defaults: {
+      name: {},
+      debounceInMs: {
+        required: true,
+        validate: RED.validators.number(),
+      },
+    },
+    inputs: 1,
+    outputs: 1,
+    outputLabels: ['Input Value'],
+    icon: 'clock-o',
+    label: function () {
+      if (!this.name && !this.debounceInMs) {
+        return 'rx-debounce-time';
+      }
+
+      if (this.name) {
+        return this.name;
+      }
+
+      return `Debounce for ${this.debounceInMs}ms`;
+    },
+  });
+</script>
+
+<script type="text/html" data-template-name="rx-debounce-time">
+  <div class="form-row">
+    <label for="node-input-name">
+      <i class="fa fa-tag"></i>
+      Name
+    </label>
+    <input type="text" id="node-input-name" placeholder="Name" />
+  </div>
+
+  <div class="form-row">
+    <label for="node-input-countdownFrom">
+      <i class="fa fa-clock-o"></i>
+      Debounce (milliseconds)
+    </label>
+    <input type="number" min="10" id="node-input-debounceInMs" placeholder="Eg: 1000" />
+  </div>
+</script>
+
+<script type="text/html" data-help-name="rx-debounce-time">
+  <p>Ignores emits until certain amount of time happen. Then emits the last value.</p>
+</script>

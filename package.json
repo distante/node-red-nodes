@@ -24,7 +24,9 @@
   "keywords": [
     "node-red",
     "countdown",
-    "timer"
+    "timer",
+    "debounce",
+    "rx debounce time"
   ],
   "author": "Saninn Salas Diaz",
   "license": "ISC",
@@ -32,6 +34,9 @@
     "url": "https://github.com/distante/node-red-nodes/issues"
   },
   "homepage": "https://github.com/distante/node-red-nodes#readme",
+  "dependencies": {
+    "rxjs": "^7.8.0"
+  },
   "devDependencies": {
     "@types/node-red": "^1.3.0",
     "husky": "^8.0.0",
@@ -40,8 +45,7 @@
     "node-red-node-test-helper": "^0.3.0",
     "prettier": "^2.8.7",
     "pretty-quick": "^3.1.3",
-    "release-it": "^15.10.1",
-    "rxjs": "^7.8.0"
+    "release-it": "^15.10.1"
   },
   "publishConfig": {
     "access": "public"

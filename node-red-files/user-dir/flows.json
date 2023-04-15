@@ -28,7 +28,7 @@
         "y": 180,
         "wires": [
             [
-                "6e3baed37ad5597e"
+                "2dd7d3bf1b6145af"
             ]
         ]
     },
@@ -45,7 +45,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 760,
+        "x": 920,
         "y": 180,
         "wires": []
     },
@@ -62,7 +62,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 770,
+        "x": 930,
         "y": 220,
         "wires": []
     },
@@ -87,7 +87,7 @@
         "y": 240,
         "wires": [
             [
-                "6e3baed37ad5597e"
+                "2dd7d3bf1b6145af"
             ]
         ]
     },
@@ -104,7 +104,7 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 760,
+        "x": 920,
         "y": 260,
         "wires": []
     },
@@ -112,10 +112,10 @@
         "id": "6e3baed37ad5597e",
         "type": "configurable-countdown-timer",
         "z": "3f882c89866aacd8",
-        "name": "configurable-countdown-timer",
-        "countdownFrom": "3",
-        "restartOnSecondMessage": false,
-        "x": 410,
+        "name": "",
+        "countdownFrom": "10",
+        "restartOnSecondMessage": true,
+        "x": 570,
         "y": 200,
         "wires": [
             [
@@ -128,5 +128,36 @@
                 "4ee046c4fbe37ccd"
             ]
         ]
+    },
+    {
+        "id": "2dd7d3bf1b6145af",
+        "type": "rx-debounce-time",
+        "z": "3f882c89866aacd8",
+        "name": "",
+        "debounceInMs": "1000",
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "6e3baed37ad5597e",
+                "c4ee6c8f1632b062"
+            ]
+        ]
+    },
+    {
+        "id": "c4ee6c8f1632b062",
+        "type": "debug",
+        "z": "3f882c89866aacd8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 320,
+        "wires": []
     }
 ]

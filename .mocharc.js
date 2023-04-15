@@ -6,7 +6,7 @@
 // Otherwise, JSON or YAML is recommended.
 
 module.exports = {
-  spec: ['nodes/**/*_spec.js'], // the positional arguments!
+  spec: ['nodes/**/*.spec.js'], // the positional arguments!
 
   watch: false,
   // 'watch-files': ['test/**/*.js'],

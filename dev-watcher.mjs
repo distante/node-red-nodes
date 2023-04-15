@@ -27,7 +27,7 @@ const watcher = watch('nodes', { recursive: true }, (eventType, filename) => {
 const watchSubscription = watchEvent$$
   .pipe(
     filter((watchEvent) => {
-      const isTest = watchEvent.filename.includes('_spec.js');
+      const isTest = watchEvent.filename.includes('.spec.js');
       if (isTest) {
         console.debug('Ignoring test file change');
         return false;
