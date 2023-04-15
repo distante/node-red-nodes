@@ -4,7 +4,8 @@
   "description": "Diverse helper nodes",
   "node-red": {
     "nodes": {
-      "configurable-countdown-timer": "nodes/configurable-countdown-timer/configurable-countdown-timer.js"
+      "configurable-countdown-timer": "nodes/configurable-countdown-timer/configurable-countdown-timer.js",
+      "rx-debounce-time": "nodes/rx-debounce-time/rx-debounce-time.js"
     }
   },
   "scripts": {
