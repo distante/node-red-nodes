@@ -1,6 +1,6 @@
 {
   "name": "@saninn/node-red-nodes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Diverse helper nodes",
   "node-red": {
     "nodes": {
