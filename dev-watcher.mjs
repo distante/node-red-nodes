@@ -34,7 +34,7 @@ const watchSubscription = watchEvent$$
       }
       return true;
     }),
-    debounceTime(200)
+    debounceTime(500)
   )
   .subscribe((watchEvent) => {
     console.log(watchEvent);

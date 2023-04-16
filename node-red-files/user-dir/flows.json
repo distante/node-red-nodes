@@ -134,7 +134,7 @@
         "type": "rx-debounce-time",
         "z": "3f882c89866aacd8",
         "name": "",
-        "debounceInMs": "1000",
+        "debounceInMs": "500",
         "x": 340,
         "y": 200,
         "wires": [
@@ -153,7 +153,8 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
         "x": 500,

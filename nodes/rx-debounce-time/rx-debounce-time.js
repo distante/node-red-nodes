@@ -1,6 +1,6 @@
-const { Subject, debounceTime } = require('rxjs');
-
 // @ts-check
+const { Subject, debounceTime } = require('rxjs');
+const shared = require('../shared.js');
 
 /**
  * Represents a LowerCaseNode that converts incoming messages to lowercase and passes them on.
@@ -55,13 +55,12 @@ const initializer = (RED) => {
 
     #initialize() {
       this.nodeRef.on('input', (msg, send, done) => {
-        console.log('INPUT');
         this.#ensureSubscription();
         this.#value$$.next({ msg, send, done });
       });
 
       this.nodeRef.on('close', (done) => {
-        if (this.#subscription) {
+        if (typeof this.#subscription !== 'undefined') {
           this.nodeRef.debug('Cleaning up subscription');
           this.#subscription.unsubscribe();
         }
@@ -74,18 +73,20 @@ const initializer = (RED) => {
         return;
       }
 
-      if (!this.config.debounceInMs || this.config.debounceInMs < 0) {
+      const debounceInMs = parseInt(this.config.debounceInMs);
+
+      if (!this.config.debounceInMs || isNaN(debounceInMs) || debounceInMs < 0) {
         this.nodeRef.error('debounceInMs is not correctly defined!');
         return;
       }
 
-      this.#subscription = this.#value$$
-        .pipe(debounceTime(parseInt(this.config.debounceInMs)))
-        .subscribe((data) => {
-          console.log('subscription exist');
-          data.send([data.msg]);
-          data.done();
-        });
+      this.#subscription = this.#value$$.pipe(debounceTime(debounceInMs)).subscribe((data) => {
+        data.msg[
+          'info'
+        ] = `received at ${shared.getCurrentTimeAndDate()} and debounced for ${debounceInMs}ms`;
+        data.send([data.msg]);
+        data.done();
+      });
     }
   }
 
